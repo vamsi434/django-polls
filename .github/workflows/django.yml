@@ -27,3 +27,7 @@ jobs:
     - name: Push Docker image to GitHub Packages
       run: |
         docker push ghcr.io/vamsi434/my-image:${{ github.ref }}
+    - name: Run Python script in Docker container
+      run: |
+        docker login --username vamsi434 --password ${{ secrets.GIT_TOKEN }}
+        docker run --rm --name python vamsi434/my-image:latest 
