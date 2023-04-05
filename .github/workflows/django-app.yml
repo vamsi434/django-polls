@@ -17,9 +17,9 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t my-image:${{ github.ref }} .
-        docker tag my-image:${{ github.ref }} ghcr.io/vamsi434/my-image:${{ github.ref }}
+        docker build -t my-image:latest .
+        docker tag my-image:latest ghcr.io/vamsi434/my-image:latest
 
     - name: Push Docker image to GitHub Packages
       run: |
-        docker push ghcr.io/vamsi434/my-image:${{ github.ref }}
+        docker push ghcr.io/vamsi434/my-image:latest
