@@ -4,7 +4,6 @@ on:
    tags:
    - '*'
     
-
 jobs:
   build-and-publish-django:
     runs-on: ubuntu-latest
