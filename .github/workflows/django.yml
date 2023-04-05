@@ -2,16 +2,14 @@ name: Build and Publish Docker Image
 on:
   push:
    tags:
-   - '*'
-    
+    - '*'
+
 jobs:
   build-and-publish-django:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      with:
-        ref: polls-docker
 
     - name: Login to GitHub Packages
       uses: docker/login-action@v1
