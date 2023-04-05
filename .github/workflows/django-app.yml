@@ -26,5 +26,5 @@ jobs:
     - name: Create a container 
       run: |
         docker login ghcr.io -u vamsi434 -p ${{ secrets.GIT_TOKEN }}
-        docker run --rm --name python ghcr.io/vamsi434/my-image:latest
+        docker-compose up -d
         
