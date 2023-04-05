@@ -1,0 +1,43 @@
+version: '3.1'
+
+volumes:
+  pgdata:
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 7000:8080
+  
+  app:
+    image: ghcr.io/vamsi434/my-image:latest
+    # command: |
+    #   python manage.py runserver 0:8000
+    # command: |
+    #   sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py createsuperuser --noinput --email=admin@django.com"
+    environment:
+      # DJANGO_SUPERUSER_USERNAME: admin
+      # DJANGO_SUPERUSER_PASSWORD: password
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: polls
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: example
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DJANGO_ALLOWED_HOSTS: "*"
+      DJANGO_SECRET_KEY: "#_s65q(u$y8ib1m31!e=1qx)sk7+=17l0n=ws2)s^tb%c(7uee"
+      DEBUG: "True"
+      # DJANGO_LOGLEVEL: debug
+      # STATIC_BUCKET_NAME: "mcd-metaflow-batch"
+    ports:
+      - 7777:8000
