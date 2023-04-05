@@ -21,8 +21,8 @@ jobs:
     - name: Build Docker image
       run: |
         docker build -t my-image:latest .
-        docker tag my-image:latest ghcr.io/my-username/my-image:latest
+        docker tag my-image:latest ghcr.io/vamsi434/my-image:latest
 
     - name: Push Docker image to GitHub Packages
       run: |
-        docker push ghcr.io/my-username/my-image:latest
+        docker push ghcr.io/vamsi434/my-image:latest
