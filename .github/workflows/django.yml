@@ -1,7 +1,9 @@
 name: Build and Publish Docker Image
 on:
-  release:
-    types: [created]
+  push:
+   tags:
+   - '*'
+    
 
 jobs:
   build-and-publish-django:
