@@ -1,6 +1,7 @@
 name: Build and Publish Docker Image
-
-on: workflow_dispatch
+on:
+  release:
+    types: [created]
 
 jobs:
   build-and-publish-django:
@@ -20,9 +21,9 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t my-image:latest .
-        docker tag my-image:latest ghcr.io/vamsi434/my-image:latest
+        docker build -t my-image:${{ github.event.release.tag_name }} .
+        docker tag my-image:${{ github.event.release.tag_name }} ghcr.io/vamsi434/my-image:${{ github.event.release.tag_name }}
 
     - name: Push Docker image to GitHub Packages
       run: |
-        docker push ghcr.io/vamsi434/my-image:latest
+        docker push ghcr.io/vamsi434/my-image:${{ github.event.release.tag_name }}
